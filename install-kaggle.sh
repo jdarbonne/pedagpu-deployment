@@ -86,6 +86,24 @@ chmod +x "$INSTALL_HOME/.local/bin/upload-to-wasabi.sh"
 
 # 6. STUDENT SETUP (Auto-configure in Kaggle)
 echo "👤 [6/8] Setting up student workspace..."
+
+# CRITICAL FIX: Reload Rclone Config to enforce v2_auth (fixes clock skew error)
+# This forces the Rclone daemon to use the v2 authentication which is tolerant of Kaggle's system time skew.
+rclone config create wasabi-artemis s3 \
+    access_key_id="WC4QSUSGR2DRWDHE02A6" \
+    secret_access_key="nJ0rgmVGaZz8loEOgKI5VKjC5VVbvrqqVEivRaLp" \
+    region=us-central-1 \
+    endpoint=https://s3.us-central-1.wasabisys.com \
+    acl=private \
+    v2_auth=true
+
+# 2. Create Wasabi folders and save student ID
+rclone mkdir wasabi-artemis:pedagpu-student-work/Spring2025/${STUDENT_ID}/OUTPUT
+rclone mkdir wasabi-artemis:pedagpu-student-work/Spring2025/${STUDENT_ID}/INPUT
+echo "$STUDENT_ID" > ~/.student_id
+echo "Your Student ID: $STUDENT_ID" > ~/MY_ID.txt
+
+# 2. Create Wasabi folders and save student ID
 rclone mkdir wasabi-artemis:pedagpu-student-work/Spring2025/${STUDENT_ID}/OUTPUT
 rclone mkdir wasabi-artemis:pedagpu-student-work/Spring2025/${STUDENT_ID}/INPUT
 echo "$STUDENT_ID" > ~/.student_id
