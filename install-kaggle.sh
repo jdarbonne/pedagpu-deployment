@@ -38,12 +38,12 @@ apt-get install -y python3-venv rclone jq curl
 # 2. CREATE ISOLATED VENV
 echo "🐍 [2/8] Creating isolated Python environment..."
 python3 -m venv --without-pip "$INSTALL_HOME/pedagpu-venv"
+
+# Manually install pip into VENV (Kaggle compatibility fix)
+curl -sL https://bootstrap.pypa.io/get-pip.py | "$INSTALL_HOME/pedagpu-venv/bin/python"
+
+# Now activate and proceed with installations
 source "$INSTALL_HOME/pedagpu-venv/bin/activate"
-
-# Manually install pip (Kaggle compatibility fix)
-curl -sL https://bootstrap.pypa.io/get-pip.py | python
-
-# Now install packages
 pip install --upgrade pip -q
 pip install watchdog -q
 
