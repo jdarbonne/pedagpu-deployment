@@ -1,0 +1,31 @@
+{
+  "semester": "Spring 2025",
+  "updated": "2025-11-23",
+  "version": "1.0",
+  "packs": [
+    {
+      "name": "Core Models (Required)",
+      "path": "core",
+      "size": "12 GB",
+      "description": "FLUX_Dev + Qwen - Required for all assignments",
+      "required": true,
+      "assignments": ["all"]
+    },
+    {
+      "name": "Assignment 1: AI Dreamscape",
+      "path": "assignment-01-dreamscape",
+      "size": "3.2 GB",
+      "description": "Style transfer + dreamscape LORAs",
+      "required": false,
+      "assignments": ["dreamscape"]
+    },
+    {
+      "name": "Assignment 2: Fight Scene",
+      "path": "assignment-02-fight",
+      "size": "4.8 GB",
+      "description": "Motion + dramatic lighting models",
+      "required": false,
+      "assignments": ["fight-scene"]
+    }
+  ]
+}
