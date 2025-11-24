@@ -30,6 +30,14 @@ mkdir -p "$INSTALL_HOME/Desktop/MY_INPUT"
 mkdir -p "$INSTALL_HOME/.local/bin"
 mkdir -p "$INSTALL_HOME/.config/autostart"
 
+# 3.5 AGGRESSIVE CLOCK SYNC (Fixes Wasabi AccessDenied due to clock skew)
+echo "⏰ [3.5/9] Forcing system clock synchronization..."
+sudo apt install -y ntpdate >/dev/null 2>&1
+sudo ntpdate -u pool.ntp.org >/dev/null 2>&1
+sudo timedatectl set-ntp true
+sleep 2
+echo "⏱️ Clock sync complete."
+
 # 4. WASABI CONFIGURATION
 echo "☁️ [4/9] Configuring cloud storage..."
 
